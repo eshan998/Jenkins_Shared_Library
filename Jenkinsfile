@@ -1,6 +1,6 @@
 // Jenkinsfile
 
-@Library('your-shared-library') _
+@Library('jenkins-shared-library') _
 
 /*
 cleanWorkspace()
@@ -24,7 +24,7 @@ trivyimage()
 deploytoContainer()
 
 kubeDeployPipeline('path/to/kubeconfig', 'your-namespace', 'your-deployment-name', 'your-container-name', 'your-image-tag')
-*/
+
 def checkSonarQualityGate(String projectKey, String sonarHostUrl, String sonarToken) {
     def apiUrl = "${sonarHostUrl}/api/qualitygates/project_status?projectKey=${projectKey}"
     def response = httpRequest(url: apiUrl, httpMode: 'GET', authentication: 'sonarqube', token: sonarToken)
@@ -34,7 +34,7 @@ def checkSonarQualityGate(String projectKey, String sonarHostUrl, String sonarTo
 
     return json.projectStatus.status
 }
-
+*/
 pipeline {
         agent any
 
@@ -47,11 +47,11 @@ pipeline {
 
             stage('gitCheckout') {
                 steps {
-                    gitCheckout('https://github.com/yourusername/your-repo.git', 'main')
+                    gitCheckout('https://github.com/Aj7Ay/Youtube-clone-app.git', 'main')
                 }
             }
 
-            stage('SonarQube Analysis') {
+ /*           stage('SonarQube Analysis') {
                 steps {
                     sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
                 }
@@ -98,15 +98,15 @@ pipeline {
                 }
             }
             
-        }
+  */      }
 
         post {
             always {
                 slackSend(
-                    channel: '#your-slack-channel',
+                    channel: '#youtube-clone-deployment',
                     color: status == 'success' ? 'good' : 'danger',
                     message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' ${status}",
-                    tokenCredentialId: 'your-slack-credentials-id'
+                    tokenCredentialId: 'slack-token'
                 )
             }
         }
