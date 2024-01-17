@@ -106,7 +106,7 @@ pipeline {
                     channel: '#youtube-clone-deployment',
                     color: status == 'success' ? 'good' : 'danger',
                     message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' ${status}",
-                    tokenCredentialId: 'slack-token'
+                    //tokenCredentialId: 'slack-token'
                 )
             }
         }
