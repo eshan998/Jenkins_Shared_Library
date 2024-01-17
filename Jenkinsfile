@@ -1,11 +1,10 @@
 // Jenkinsfile
 
 @Library('jenkins-shared-library') _
-def COLOR_MAP = [
-    'FAILURE' : 'danger',
-    'SUCCESS' : 'good'
-]
+
 /*
+
+
 cleanWorkspace()
 
 gitCheckout('https://github.com/yourusername/your-repo.git', 'main')
@@ -100,29 +99,46 @@ pipeline {
                     kubeDeployPipeline('path/to/kubeconfig', 'your-namespace', 'your-deployment-name', 'your-container-name', 'your-image-tag')
                 }
             }
-            
+ */       
+ // Add more pipeline stages as needed    
         }
 
-        post {
-            always {
-                slackSend(
-                    channel: '#youtube-clone-deployment',
-                    color: status == 'success' ? 'good' : 'danger',
-                    message: "Job '${env.JOB_NAME} ${env.BUILD_NUMBER}' ${status}",
-                    //tokenCredentialId: 'slack-token'
-                )
-            }
-        }
-*/
+/*
+def COLOR_MAP = [
+    'FAILURE' : 'danger',
+    'SUCCESS' : 'good'
+]
         post {
         always {
         echo 'Slack Notifications'
         slackSend (
-            channel: '#channel name',   #change your channel name
+            channel: '#youtube-clone-deployment',
             color: COLOR_MAP[currentBuild.currentResult],
             message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} \n build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
         )
+        }
     }
-    }
-    }
-// Add more pipeline stages as needed
+*/
+    post {
+            success {
+                // Send success notification to Slack
+                slackSend(
+                    channel: '#youtube-clone-deployment',
+                    color: 'good',
+                    message: "Job: ${env.JOB_NAME} \n Build: ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL} *succeeded*",
+                    //tokenCredentialId: 'your-slack-credentials-id'
+                )
+            }
+
+            failure {
+                // Send failure notification to Slack
+                slackSend(
+                    channel: '#youtube-clone-deployment',
+                    color: 'danger',
+                    message: "Job: ${env.JOB_NAME} \n Build: ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL} *failed*",
+                    //tokenCredentialId: 'your-slack-credentials-id'
+                )
+            }
+        }
+}
+
