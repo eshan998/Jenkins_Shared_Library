@@ -3,7 +3,7 @@ def call(String projectKey, String projectName, String sonarHostUrl, String sona
                     script {
                         withSonarQubeEnv('sonar-server') {
                             sh """
-                                ./gradlew sonarqube \
+                                ./gradlew sonar-scanner \
                                 -Dsonar.projectKey=${projectKey} \
                                 -Dsonar.projectName=${projectName} \
                                 -Dsonar.host.url=${sonarHostUrl} \

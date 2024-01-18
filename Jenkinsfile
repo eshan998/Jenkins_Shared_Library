@@ -40,6 +40,10 @@ def checkSonarQualityGate(String projectKey, String sonarHostUrl, String sonarTo
 pipeline {
         agent any
 
+        environment{
+            SCANNER_HOME=tool 'sonar-scanner'
+        }
+
         stages {
             stage('cleanWorkspace') {
                 steps {
