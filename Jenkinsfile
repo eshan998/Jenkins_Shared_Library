@@ -53,12 +53,13 @@ pipeline {
                 }
             }
 
- /*           stage('SonarQube Analysis') {
+          stage('SonarQube Analysis') {
                 steps {
-                    sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
+                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
+                    sonarAnalysis('youtube', 'youtube', 'sonar-token')
                 }
             }
-            stage('SonarQube Quality Gate Check') {
+  /*            stage('SonarQube Quality Gate Check') {
                 steps {
                     sonarQualityGate('your-project-key', 'https://sonarqube.example.com', 'your-sonar-token')
                 }
