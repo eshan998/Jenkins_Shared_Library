@@ -70,6 +70,12 @@ pipeline {
                     sonarAnalysis()
                 }
             }
+            stage('SonarQube Quality Gate Check') {
+                steps {
+                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
+                    sonarQualityGate('sonar-token')
+                }
+            }
   /*            stage('SonarQube Quality Gate Check') {
                 steps {
                     sonarQualityGate('your-project-key', 'https://sonarqube.example.com', 'your-sonar-token')
