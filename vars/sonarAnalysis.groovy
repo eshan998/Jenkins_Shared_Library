@@ -1,7 +1,7 @@
 def call(String projectKey, String projectName, String sonarHostUrl, String sonarToken) {
 
                     script {
-                        withSonarQubeEnv('SonarQube') {
+                        withSonarQubeEnv('sonar-server') {
                             sh """
                                 ./gradlew sonarqube \
                                 -Dsonar.projectKey=${projectKey} \
