@@ -14,12 +14,10 @@
                 }
   //./gradlew sonarqube \  
   */
-  def call(String projectKey, String projectName) {
-    script{
+  def call() {
     withSonarQubeEnv('sonar-server') {
         sh ''' $SCANNER_HOME/bin/sonar-scanner \
-                -Dsonar.projectName=${projectName} \
-                -Dsonar.projectKey=${projectKey} '''
+                -Dsonar.projectName=youtube \
+                -Dsonar.projectKey=youtube'''
     }
     }
-}

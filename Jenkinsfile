@@ -60,7 +60,7 @@ pipeline {
             stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
-                    sonarAnalysis('youtube', 'youtube')
+                    sonarAnalysis()
                 }
             }
             stage('SonarQube Quality Gate Check') {
