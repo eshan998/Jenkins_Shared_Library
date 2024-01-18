@@ -43,6 +43,9 @@ pipeline {
         environment{
             SCANNER_HOME=tool 'sonar-scanner'
         }
+        tools{
+            nodejs 'node16'
+        }
 
         stages {
             stage('cleanWorkspace') {
