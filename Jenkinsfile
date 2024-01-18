@@ -56,11 +56,18 @@ pipeline {
                     gitCheckout('https://github.com/Aj7Ay/Youtube-clone-app.git', 'main')
                 }
             }
-
+/*
           stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
                     sonarAnalysis('youtube', 'youtube', 'http://13.201.137.11:9000', 'sonar-token')
+                }
+            }
+*/
+            stage('SonarQube Analysis') {
+                steps {
+                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
+                    sonarAnalysis()
                 }
             }
   /*            stage('SonarQube Quality Gate Check') {
