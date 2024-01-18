@@ -56,29 +56,17 @@ pipeline {
                     gitCheckout('https://github.com/Aj7Ay/Youtube-clone-app.git', 'main')
                 }
             }
-/*
-          stage('SonarQube Analysis') {
-                steps {
-                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
-                    sonarAnalysis('youtube', 'youtube', 'http://13.201.137.11:9000', 'sonar-token')
-                }
-            }
-*/
+
             stage('SonarQube Analysis') {
                 steps {
-                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
-                    sonarAnalysis()
+                   // sonarAnalysis('your-project-key', 'Your Project Name')
+                    sonarAnalysis('youtube', 'youtube')
                 }
             }
             stage('SonarQube Quality Gate Check') {
                 steps {
-                   // sonarAnalysis('your-project-key', 'Your Project Name', 'https://sonarqube.example.com', 'your-sonar-token')
+                   // sonarQualityGate('your-sonar-token')
                     sonarQualityGate('sonar-token')
-                }
-            }
-  /*            stage('SonarQube Quality Gate Check') {
-                steps {
-                    sonarQualityGate('your-project-key', 'https://sonarqube.example.com', 'your-sonar-token')
                 }
             }
             stage('installDependency') {
@@ -86,7 +74,7 @@ pipeline {
                     installDependency()
                 }
             }
-            stage('OWASP Dependency-Check') {
+ /*           stage('OWASP Dependency-Check') {
                 steps {
                     owaspScan(reportPath: 'custom-report-path.html')
                 }
