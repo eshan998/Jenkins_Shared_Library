@@ -95,7 +95,7 @@ pipeline {
                 
                 }
             }
-       */      stage('dockerImagePipeline') {
+            stage('dockerImagePipeline') {
                 steps {
                     dockerImagePipeline('eshan3312', 'youtube')
                 }
@@ -111,9 +111,9 @@ pipeline {
                     deploytoContainer()
                 }
             }
-     /*        stage('kubeDeployPipeline') {
+     */         stage('kubeDeployPipeline') {
                 steps {
-                    kubeDeployPipeline('path/to/kubeconfig', 'your-namespace', 'your-deployment-name', 'your-container-name', 'your-image-tag')
+                    kubeDeployPipeline()
                 }
             }
  */       
