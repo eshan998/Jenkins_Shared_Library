@@ -1,3 +1,3 @@
 def call(){
-    sh 'trivy fs . >trivyfs.txt'
+    sh 'trivy fs . > trivyfs.txt'
 }
