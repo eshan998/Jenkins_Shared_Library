@@ -77,17 +77,17 @@ pipeline {
                     installDependency()
                 }
             }
- /*           stage('OWASP Dependency-Check') {
+           stage('OWASP Dependency-Check') {
                 steps {
-                    owaspScan(reportPath: 'custom-report-path.html')
+                    owaspScan()
                 }
             }
-            stage('trivyfs Scan') {
+           stage('trivyfs Scan') {
                 steps {
                     trivyfs()
                 }
             }
-            stage('dockerImagePipeline') {
+  /*            stage('dockerImagePipeline') {
                 steps {
                     dockerImagePipeline('your-docker-image-name', 'your-image-tag', 'path/to/Dockerfile')
                 }
