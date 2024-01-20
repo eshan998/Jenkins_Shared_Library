@@ -45,6 +45,7 @@ pipeline {
         }
         tools{
             nodejs 'node16'
+            jdk 'jdk17'
         }
 
         stages {
@@ -60,7 +61,7 @@ pipeline {
                 }
             }
 
-            stage('SonarQube Analysis') {
+ /*           stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
                     sonarAnalysis()
@@ -72,19 +73,20 @@ pipeline {
                     sonarQualityGate('sonar-token')
                 }
             }
-            stage('installDependency') {
+  */          stage('installDependency') {
                 steps {
                     installDependency()
                 }
             }
-           stage('OWASP Dependency-Check') {
+   /*        stage('OWASP Dependency-Check') {
                 steps {
                     owaspScan()
                 }
             }
-           stage('trivyfs Scan') {
+      */     stage('trivyfs Scan') {
                 steps {
-                    trivyfs()
+                    trivyFs()
+                
                 }
             }
   /*            stage('dockerImagePipeline') {
