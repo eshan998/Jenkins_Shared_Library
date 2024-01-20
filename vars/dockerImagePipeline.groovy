@@ -1,7 +1,7 @@
 // vars/dockerImagePipeline.groovy
-
+ /* 
 def call(String imageName, String imageTag, String dockerfilePath) {
-    pipeline {
+  pipeline {
         agent any
 
         stages {
@@ -34,4 +34,16 @@ def call(String imageName, String imageTag, String dockerfilePath) {
             // Add more stages as needed
         }
     }
+    }
+*/
+def call(String dockerHubUserName, String imageName) {
+                sh "docker build --build-arg REACT_APP_RAPID_API_KEY=a42b63cd59msha450dfa5a063a63p1e04bbjsn83cada0a4a18 -t ${imageName} ."
+                sh "docker tag ${imageName} ${dockerHubUserName}/${imageName}:latest"
+                withDockerRegistry([url:'https://index.docker.io/v1/', credentialsId: 'docker']){
+                    sh "docker push ${dockerHubUserName}/${imageName}:latest"
+                }
+
+
+
+
 }

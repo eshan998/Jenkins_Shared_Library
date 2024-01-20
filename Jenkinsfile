@@ -83,24 +83,30 @@ pipeline {
                     owaspScan()
                 }
             }
-      */     stage('trivyfs Scan') {
+           stage('trivyfs Scan') {
                 steps {
                     trivyFs()
                 
                 }
             }
-  /*            stage('dockerImagePipeline') {
+            stage('trivyfs Scan') {
                 steps {
-                    dockerImagePipeline('your-docker-image-name', 'your-image-tag', 'path/to/Dockerfile')
+                    sh 'trivy fs . > trivyfs.txt'
+                
+                }
+            }
+       */      stage('dockerImagePipeline') {
+                steps {
+                    dockerImagePipeline('eshan3312', 'youtube')
                 }
             }
             stage('trivyimage Scan') {
                 steps {
-                    trivyimage()
+                    sh 'trivy image eshan3312/youtube:latest > trivyimage.text'
                 }
             }
 
-            stage('deploytoContainer') {
+      /*       stage('deploytoContainer') {
                 steps {
                     deploytoContainer()
                 }
