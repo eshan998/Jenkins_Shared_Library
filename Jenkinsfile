@@ -106,12 +106,12 @@ pipeline {
                 }
             }
 
-      /*       stage('deploytoContainer') {
+            stage('deploytoContainer') {
                 steps {
                     deploytoContainer()
                 }
             }
-            stage('kubeDeployPipeline') {
+     /*        stage('kubeDeployPipeline') {
                 steps {
                     kubeDeployPipeline('path/to/kubeconfig', 'your-namespace', 'your-deployment-name', 'your-container-name', 'your-image-tag')
                 }
