@@ -61,7 +61,7 @@ pipeline {
                 }
             }
 
- /*           stage('SonarQube Analysis') {
+           stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
                     sonarAnalysis()
@@ -73,12 +73,12 @@ pipeline {
                     sonarQualityGate('sonar-token')
                 }
             }
-  */          stage('installDependency') {
+            stage('installDependency') {
                 steps {
                     installDependency()
                 }
             }
-   /*        stage('OWASP Dependency-Check') {
+           stage('OWASP Dependency-Check') {
                 steps {
                     owaspScan()
                 }
@@ -111,12 +111,12 @@ pipeline {
                     deploytoContainer()
                 }
             }
-     */         stage('kubeDeployPipeline') {
+              stage('kubeDeployPipeline') {
                 steps {
                     kubeDeployPipeline()
                 }
             }
- */       
+     
  // Add more pipeline stages as needed    
         }
 
