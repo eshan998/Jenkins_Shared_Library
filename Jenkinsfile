@@ -4,7 +4,6 @@
 
 /*
 
-
 cleanWorkspace()
 
 gitCheckout('https://github.com/yourusername/your-repo.git', 'main')
@@ -43,12 +42,12 @@ pipeline {
         environment{
             SCANNER_HOME=tool 'sonar-scanner'
         }
-   /*     tools{
+        tools{
             nodejs 'node16'
             jdk 'jdk17'
         }
 
-    */    stages {
+        stages {
             stage('cleanWorkspace') {
                 steps {
                     cleanWorkspace()
@@ -78,17 +77,13 @@ pipeline {
                     installDependency()
                 }
             }
-    /*       stage('OWASP Dependency-Check') {
+           stage('OWASP Dependency-Check') {
                 steps {
-                    owaspScan()
+                    dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
                 }
             }
-           stage('trivyfs Scan') {
-                steps {
-                    trivyFs()
-                
-                }
-            }
+           
             stage('trivyfs Scan') {
                 steps {
                     sh 'trivy fs . > trivyfs.txt'
@@ -116,26 +111,10 @@ pipeline {
                     kubeDeployPipeline()
                 }
             }
-  */   
+     
  // Add more pipeline stages as needed    
         }
 
-/*
-def COLOR_MAP = [
-    'FAILURE' : 'danger',
-    'SUCCESS' : 'good'
-]
-        post {
-        always {
-        echo 'Slack Notifications'
-        slackSend (
-            channel: '#youtube-clone-deployment',
-            color: COLOR_MAP[currentBuild.currentResult],
-            message: "*${currentBuild.currentResult}:* Job ${env.JOB_NAME} \n build ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL}"
-        )
-        }
-    }
-*/
     post {
             success {
                 // Send success notification to Slack
