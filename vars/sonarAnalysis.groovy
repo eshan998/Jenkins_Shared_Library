@@ -1,16 +1,19 @@
-def call() {
- withSonarQubeEnv('sonar-server') {
+/*def call(String projectKey, String projectName, String sonarHostUrl, String sonarToken) {
+
+                    script {
+                        withSonarQubeEnv('sonar-server') {
                             sh """
-                                sonar-scanner \
-                                    -Dsonar.projectKey=youtube \
-                                    -Dsonar.sources=. \
-                                    -Dsonar.host.url=http://13.126.100.207:9000 \
-                                    -Dsonar.login=jekins
+                                $SCANNER_HOME/bin/sonar-scanner \
+                                -Dsonar.projectKey=${projectKey} \
+                                -Dsonar.projectName=${projectName} \
+                                -Dsonar.host.url=${sonarHostUrl} \
+                                -Dsonar.login=${sonarToken}
                             """
                         }
+                    }
                 }
   //./gradlew sonarqube \  
- /* 
+  */ 
   def call() {
     withSonarQubeEnv('sonar-server') {
         sh ''' $SCANNER_HOME/bin/sonar-scanner \
@@ -18,4 +21,3 @@ def call() {
                 -Dsonar.projectKey=youtube'''
     }
     }
- */

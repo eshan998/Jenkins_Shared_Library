@@ -40,10 +40,10 @@ def checkSonarQualityGate(String projectKey, String sonarHostUrl, String sonarTo
 pipeline {
         agent any
 
-    /*    environment{
+        environment{
             SCANNER_HOME=tool 'sonar-scanner'
         }
-        tools{
+   /*     tools{
             nodejs 'node16'
             jdk 'jdk17'
         }
@@ -61,7 +61,7 @@ pipeline {
                 }
             }
 
-   /*        stage('SonarQube Analysis') {
+           stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
                     sonarAnalysis()
@@ -78,7 +78,7 @@ pipeline {
                     installDependency()
                 }
             }
-           stage('OWASP Dependency-Check') {
+    /*       stage('OWASP Dependency-Check') {
                 steps {
                     owaspScan()
                 }
