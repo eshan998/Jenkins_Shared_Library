@@ -40,7 +40,7 @@ def checkSonarQualityGate(String projectKey, String sonarHostUrl, String sonarTo
 pipeline {
         agent any
 
-        environment{
+    /*    environment{
             SCANNER_HOME=tool 'sonar-scanner'
         }
         tools{
@@ -48,7 +48,7 @@ pipeline {
             jdk 'jdk17'
         }
 
-        stages {
+    */    stages {
             stage('cleanWorkspace') {
                 steps {
                     cleanWorkspace()
@@ -57,11 +57,11 @@ pipeline {
 
             stage('gitCheckout') {
                 steps {
-                    gitCheckout('https://github.com/Aj7Ay/Youtube-clone-app.git', 'main')
+                    gitCheckout('https://github.com/eshan998/youtube-clone-app.git', 'main')
                 }
             }
 
-           stage('SonarQube Analysis') {
+   /*        stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
                     sonarAnalysis()
@@ -116,7 +116,7 @@ pipeline {
                     kubeDeployPipeline()
                 }
             }
-     
+  */   
  // Add more pipeline stages as needed    
         }
 
@@ -140,7 +140,7 @@ def COLOR_MAP = [
             success {
                 // Send success notification to Slack
                 slackSend(
-                    channel: '#youtube-clone-deployment',
+                    channel: '#youtube-test-lab',
                     color: 'good',
                     message: "Job: ${env.JOB_NAME} \n Build: ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL} *succeeded*",
                     //tokenCredentialId: 'your-slack-credentials-id'
@@ -150,7 +150,7 @@ def COLOR_MAP = [
             failure {
                 // Send failure notification to Slack
                 slackSend(
-                    channel: '#youtube-clone-deployment',
+                    channel: '#youtube-test-lab',
                     color: 'danger',
                     message: "Job: ${env.JOB_NAME} \n Build: ${env.BUILD_NUMBER} \n More info at: ${env.BUILD_URL} *failed*",
                     //tokenCredentialId: 'your-slack-credentials-id'
