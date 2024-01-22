@@ -60,7 +60,7 @@ pipeline {
                 }
             }
 
-  /*         stage('SonarQube Analysis') {
+           stage('SonarQube Analysis') {
                 steps {
                    // sonarAnalysis('your-project-key', 'Your Project Name')
                     sonarAnalysis()
@@ -80,7 +80,7 @@ pipeline {
            stage('OWASP Dependency-Check') {
                 steps {
                     dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                    dependencyCheckPublisher pattern: '**dependency-check-report.xml'
+                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
                 }
             }
            
@@ -90,12 +90,12 @@ pipeline {
                 
                 }
             }
-  */          stage('dockerImagePipeline') {
+            stage('dockerImagePipeline') {
                 steps {
                     dockerImagePipeline('eshan3312', 'youtube')
                 }
             }
-   /*         stage('trivyimage Scan') {
+            stage('trivyimage Scan') {
                 steps {
                     sh 'trivy image eshan3312/youtube:latest > trivyimage.text'
                 }
@@ -106,7 +106,7 @@ pipeline {
                     deploytoContainer()
                 }
             }
-   */           stage('kubeDeployPipeline') {
+              stage('kubeDeployPipeline') {
                 steps {
                     kubeDeployPipeline()
                 }
